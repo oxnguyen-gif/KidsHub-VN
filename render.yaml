@@ -1,0 +1,20 @@
+services:
+  - type: worker
+    name: kidshub-vn
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python KidsHub_VN.py
+    disk:
+      name: kidshub-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_IDS
+        value: "7330307381"
+      - key: KIDSHUB_DB_PATH
+        value: /var/data/kidshub_vn.sqlite3
+      - key: LOG_LEVEL
+        value: INFO
